@@ -5,16 +5,12 @@ import sqlite3
 import os
 from handlers import handlers
 
-from aiogram.client.session.aiohttp import AiohttpSession
-
-session = AiohttpSession(proxy="http://185.10.129.14:3128/")
-
 
 # Главная асинхронная функция для запуска бота
 async def main():
     config: Config = load_config()
     # Создание объекта бота
-    bot = Bot(token=config.tg_bot.token, session=session)
+    bot = Bot(token=config.tg_bot.token)
     # Создание диспетчера для обработки сообщений и команд
     dp = Dispatcher()
     dp.include_router(handlers.router)
